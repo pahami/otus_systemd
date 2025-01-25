@@ -1,0 +1,61 @@
+---
+- name: Update repositories cache and apt
+  ansible.builtin.apt:
+    update_cache: yes
+  tags: 
+    -update apt
+  become: yes
+
+- name: Create file with variables for unit
+  ansible.builtin.template:
+    src: watchlog.j2
+    dest: "{{ watchlog }}"
+  become: yes
+
+- name: Create file watchlog.log
+  ansible.builtin.template:
+    src: watchlog.log.j2
+    dest: "{{ watchlog_log }}"
+    owner: root
+    group: root
+    mode: '0744'
+  become: yes
+
+- name: Copy file watchlog.sh
+  ansible.builtin.copy:
+    src: watchlog.sh
+    dest: "{{ watchlog_sh }}"
+    owner: root
+    group: root
+    mode: '0744'
+  become: yes
+
+- name: Copy file watchlog.service
+  ansible.builtin.copy:
+    src: watchlog.service
+    dest: "{{ watchlog_service }}"
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+
+- name: Copy file watchlog.timer
+  ansible.builtin.copy:
+    src: watchlog.timer
+    dest: "{{ watchlog_timer }}"
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+
+- name: watchlog service initialization
+  ansible.builtin.service:
+    service: watchlog.service
+    state: started
+
+- name: Enable and start service watchlog.timer
+  ansible.builtin.service:
+    name: watchlog.timer
+    state: started
+    enabled: yes
+...

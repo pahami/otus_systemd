@@ -1,0 +1,8 @@
+---
+watchlog: "/etc/default/watchlog"
+watchlog_log: "/var/log/watchlog.log"
+watchlog_sh: "/opt/"
+watchlog_service: "/etc/systemd/system/"
+watchlog_timer: "/etc/systemd/system/"
+WORD: ALERT
+...

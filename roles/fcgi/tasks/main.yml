@@ -1,0 +1,33 @@
+---
+- name: install apache2
+  ansible.builtin.apt:
+    pkg: "{{ fcgi_pkgs }}"
+    state: present
+  notify: 
+    - Start Apache2
+  become: yes
+ 
+- name: Copy file fcgi.conf
+  ansible.builtin.copy:
+    src: fcgi.conf
+    dest: "{{ fcgi_conf }}"
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+
+- name: Copy file spawn-fcgi.service
+  ansible.builtin.copy:
+    src: spawn-fcgi.service
+    dest: "{{ spawn_fcgi_service }}"
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+
+- name: Enable and start service spawn-fcgi.service
+  ansible.builtin.service:
+    name: spawn-fcgi.service
+    state: started
+    enabled: yes
+...

@@ -1,0 +1,13 @@
+---
+
+spawn_fcgi_service: "/etc/systemd/system/"
+fcgi_conf: "/etc/spawn-fcgi/"
+fcgi_pkgs:
+  - spawn-fcgi
+  - php
+  - php-cgi
+  - php-cli
+  - apache2
+  - libapache2-mod-fcgid
+
+...

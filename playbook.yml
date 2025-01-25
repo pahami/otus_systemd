@@ -1,0 +1,25 @@
+---
+- name: Testing watchlog
+  hosts: watchlog
+  gather_facts: false
+  become: true
+  roles:
+    - role: common
+    - role: watchlog
+
+- name: Testing fcgi
+  hosts: fcgi
+  gather_facts: false
+  become: true
+  roles:
+    - role: common
+    - role: fcgi
+
+- name: Testing nginx
+  hosts: nginx
+  gather_facts: false
+  become: true
+  roles:
+    - role: common
+    - role: nginx
+...

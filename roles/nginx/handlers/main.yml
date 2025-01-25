@@ -1,0 +1,11 @@
+---
+- name: Start Nginx
+  ansible.builtin.systemd:
+    service: nginx
+    state: started    
+
+- name: Restart Nginx
+  ansible.builtin.systemd:
+    service: nginx
+    state: restarted
+...

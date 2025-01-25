@@ -1,0 +1,11 @@
+---
+nginx_pkgs:
+  - nginx
+nginx_service: "/etc/systemd/system/"
+nginx_conf:
+  - name: first
+    port: 9001
+  - name: second
+    port: 9002
+
+...
